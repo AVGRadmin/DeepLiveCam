@@ -1,5 +1,5 @@
 # Repository Overview
-This repository is designed as an overhead solution to run various forks of a single application, one at a time, using Docker. It contains all the necessary configurations and scripts to streamline the setup, build, and execution processes for different forks of the application. Key components include:
+This repository is designed as an overhead solution to run various forks of [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam), one at a time, using [Docker](https://www.docker.com/products/docker-hub/). It contains all the necessary configurations and scripts to streamline the setup, build, and execution processes for different forks of the [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam). 
 ## Docker
 ### Dockerfile: 
 A Dockerfile optimized for building Docker images with CUDA version 12.2 support. This ensures compatibility with the GPU resources required by the application.
