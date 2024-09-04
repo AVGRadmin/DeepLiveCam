@@ -6,6 +6,10 @@ services:
     <<: *base
     volumes:
       - ./Deep-Live-Cam:/app
+  Deep-Live-Cam-Docker:
+    <<: *base
+    volumes:
+      - ./Deep-Live-Cam-Docker:/app
   iRoopDeepFaceCam:
     <<: *base
     volumes:
