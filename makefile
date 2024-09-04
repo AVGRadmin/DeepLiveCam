@@ -5,7 +5,10 @@ CUDA_VERSION := "12.2"
 
 MODEL_DIR := models
 INSIGHTFACE_DIR := $(MODEL_DIR)/.insightface/models/buffalo_l
-
+MODEL_URL := https://huggingface.co/AVGRadmin/model-pool
+# Args
+SERVICE ?= Deep-Live-Cam
+IMAGE ?= deep-swap:latest-cuda-$(CUDA_VERSION)
 # Targets
 .PHONY: clean clean-all all setup_models run reset-models
 
@@ -24,11 +27,12 @@ clean-all: clean
 	sleep 2
 	rm -rf output/output_files/*
 	rm -rf output/enhanced/*
+	
 setup_models: clean
-	git clone https://huggingface.co/AVGRadmin/model-pool tmp
+	git clone $(MODEL_URL) tmp
 	rm -rf models
 	mv tmp/models models
 	rm -rf model-pool
 build:
-	docker build -t Deep-Swap-Docker:latest ./docker/Dockerfile.$(CUDA_VERSION)
+	docker build -t $(IMAGE) ./docker/Dockerfile.$(CUDA_VERSION)
 	
