@@ -1,20 +1,5 @@
 version: '3.8'
 
-# Put forks here
-services:
-  Deep-Live-Cam:
-    <<: *base
-    volumes:
-      - ./Deep-Live-Cam:/app
-  Deep-Live-Cam-Docker:
-    <<: *base
-    volumes:
-      - ./Deep-Live-Cam-Docker:/app
-  iRoopDeepFaceCam:
-    <<: *base
-    volumes:
-      - ./iRoopDeepFaceCam:/app
-
 x-base: &base
   image: docker.io/avgradmin/deep-swap:v0.1.2-cuda-12.2
   build:
@@ -36,4 +21,20 @@ x-base: &base
             capabilities: [gpu]
   tty: true
   runtime: nvidia
+  command: [ "/bin/bash", "/app/docker_script.sh" ]
 
+# Put forks here
+
+services:
+  Deep-Live-Cam:
+    volumes:
+      - ./Deep-Live-Cam:/app
+    <<: *base
+  Deep-Live-Cam-Docker:
+    volumes:
+      - ./Deep-Live-Cam-Docker:/app
+    <<: *base
+  iRoopDeepFaceCam:
+    volumes:
+      - ./iRoopDeepFaceCam:/app
+    <<: *base
