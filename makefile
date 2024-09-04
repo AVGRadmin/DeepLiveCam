@@ -23,7 +23,7 @@ run:
 
 clean: 
 	sudo chown -R $(USER) .
-	rm -rf models model-pool
+	rm -rf models tmp
 clean-all: clean
 	echo "WARNING: This will purge the output files generated in the output folder! Purge in 5s"
 	sleep 2
@@ -34,7 +34,7 @@ setup_models: clean
 	git clone $(MODEL_URL) tmp
 	rm -rf models
 	mv tmp/models models
-	rm -rf model-pool
+	rm -rf tmp
 
 submodule-update:
 	git submodule update --init --recursive
