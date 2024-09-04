@@ -21,7 +21,7 @@ reset-models: clean setup_models
 run: 
 	docker compose run Deep-Live-Cam
 
-clean: owner
+clean: 
 	sudo chown -R $(USER) .
 	rm -rf models model-pool
 clean-all: clean
@@ -45,4 +45,4 @@ build:
 new-submodule:
 	git submodule add $(SUBMODULE_URL) $(SUBMODULE_NAME)
 	git add .gitmodules $(SUBMODULE_NAME)/
-	git commit -m "Added submodule of original repo $(SUBMODULE_NAME)"
+	git commit -m "Added submodule of repo $(SUBMODULE_NAME)"
