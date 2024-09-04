@@ -1,3 +1,6 @@
 [submodule "Deep-Live-Cam-Docker"]
 	path = Deep-Live-Cam-Docker
 	url = https://github.com/AVGRadmin/Deep-Live-Cam-Docker.git
+[submodule "Deep-Live-Cam"]
+	path = Deep-Live-Cam
+	url = https://github.com/hacksider/Deep-Live-Cam
