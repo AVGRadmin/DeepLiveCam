@@ -25,6 +25,8 @@ A Makefile that automates common tasks such as downloading and setting up models
 The Makefile includes commands to clean up directories, download and set up models, build the Docker image, and run the application using the specified service. Users can specify the service and image directly when executing commands, adding flexibility to the setup.
 
 ### Usage
+#### Getting existing submodules:
+- Run `make submodule-update` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
 #### Setting Up Models:
 
 - Run `make setup_models` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
@@ -32,19 +34,19 @@ The Makefile includes commands to clean up directories, download and set up mode
 
 - To run the application using the default service (Deep-Live-Cam), simply use the command:
 ```bash
-Copy code
+
 make run
 ```
 - To run the application with a different service, specify the service name like so:
 ```bash
-Copy code
+
 make run SERVICE=iRoopDeepFaceCam
 ```
 #### Building the Docker Image:
 
 - To build the Docker image with the specified CUDA version, use the make build command. You can also specify a different image name if needed:
 ```bash
-Copy code
+
 make build [IMAGE=<image_name>]
 ```
 #### Cleaning Up:
