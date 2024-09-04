@@ -9,6 +9,8 @@ MODEL_URL := https://huggingface.co/AVGRadmin/model-pool
 # Args
 SERVICE ?= Deep-Live-Cam
 IMAGE ?= deep-swap:latest-cuda-$(CUDA_VERSION)
+SUBMODULE_NAME ?= NONE
+SUBMODULE_URL ?= NONE
 # Targets
 .PHONY: clean clean-all all setup_models run reset-models submodule-update
 
@@ -39,3 +41,8 @@ submodule-update:
 
 build:
 	docker build -t $(IMAGE) ./docker/Dockerfile.$(CUDA_VERSION)
+
+new-submodule:
+	git submodule add $(SUBMODULE_URL) $(SUBMODULE_NAME)
+	git add .gitmodules $(SUBMODULE_NAME)/
+	git commit -m "Added submodule of original repo $(SUBMODULE_NAME)"
