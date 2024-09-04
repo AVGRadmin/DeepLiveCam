@@ -2,8 +2,8 @@
 This repository is designed as an overhead solution to run various forks of [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam), one at a time, using [Docker](https://www.docker.com/products/docker-hub/). It contains all the necessary configurations and scripts to streamline the setup, build, and execution processes for different forks of the [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam). 
 ## Docker
 ### Dockerfile: 
-A Dockerfile optimized for building Docker images with CUDA version 12.2 support. This ensures compatibility with the GPU resources required by the application.
-
+A Dockerfile optimized for building Docker images with CUDA version 12.2 support. This is mainly because i have other projects that depends on cuda 12.2. I will add a dockerfile for cuda 11.8 at a later point.
+Note that the original repo is made for cuda 11.8!
 ### Docker Compose File: 
 A Docker Compose configuration that allows you to manage and switch between different forks of the application seamlessly. Each fork is defined as a service, making it easy to add or switch forks by modifying the Docker Compose file.
 
