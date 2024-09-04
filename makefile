@@ -10,9 +10,9 @@ MODEL_URL := https://huggingface.co/AVGRadmin/model-pool
 SERVICE ?= Deep-Live-Cam
 IMAGE ?= deep-swap:latest-cuda-$(CUDA_VERSION)
 # Targets
-.PHONY: clean clean-all all setup_models run reset-models
+.PHONY: clean clean-all all setup_models run reset-models submodule-update
 
-all: clean setup_models run
+all: clean setup_models submodule-update run
 
 reset-models: clean setup_models
 	
@@ -28,11 +28,14 @@ clean-all: clean
 	rm -rf output/output_files/*
 	rm -rf output/enhanced/*
 	
-setup_models: clean
+setup_models: clean 
 	git clone $(MODEL_URL) tmp
 	rm -rf models
 	mv tmp/models models
 	rm -rf model-pool
+
+submodule-update:
+	git submodule update --init --recursive
+
 build:
 	docker build -t $(IMAGE) ./docker/Dockerfile.$(CUDA_VERSION)
-	
