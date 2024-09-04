@@ -1,40 +1,26 @@
 version: '3.8'
 
-x-base: &base
-  image: docker.io/avgradmin/deep-swap:v0.1.2-cuda-12.2
-  build:
-    context: .
-    dockerfile: docker/Dockerfile.cuda12-2  
-  volumes:
-    - ./docker/docker_script.sh:/app/docker_script.sh
-    - ./models/.insightface:/root/.insightface
-    - ./models/.insightface:/app/.insightface
-    - ./models/gfpgan:/app/gfpgan
-    - ./models:/app/models
-    - ./output:/app/output
-  deploy:
-    resources:
-      reservations:
-        devices:
-          - driver: nvidia
-            count: 1
-            capabilities: [gpu]
-  tty: true
-  runtime: nvidia
-  command: [ "/bin/bash", "/app/docker_script.sh" ]
-
-# Put forks here
-
 services:
   Deep-Live-Cam:
-    volumes:
-      - ./Deep-Live-Cam:/app
-    <<: *base
-  Deep-Live-Cam-Docker:
+    image: docker.io/avgradmin/deep-swap:v0.1.2-cuda-12.2
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.cuda12-2  
     volumes:
       - ./Deep-Live-Cam-Docker:/app
-    <<: *base
-  iRoopDeepFaceCam:
-    volumes:
-      - ./iRoopDeepFaceCam:/app
-    <<: *base
+      - ./docker/docker_script.sh:/app/docker_script.sh
+      - ./models/.insightface:/root/.insightface
+      - ./models/.insightface:/app/.insightface
+      - ./models/gfpgan:/app/gfpgan
+      - ./models:/app/models
+      - ./output:/app/output
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: 1
+              capabilities: [gpu]
+    tty: true
+    runtime: nvidia
+    command: [ "/bin/bash", "/app/docker_script.sh" ]

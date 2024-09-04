@@ -7,7 +7,7 @@ MODEL_DIR := models
 INSIGHTFACE_DIR := $(MODEL_DIR)/.insightface/models/buffalo_l
 MODEL_URL := https://huggingface.co/AVGRadmin/model-pool
 # Args
-SERVICE ?= Deep-Live-Cam
+SERVICE ?= Deep-Live-Cam-Docker
 IMAGE ?= deep-swap:latest-cuda-$(CUDA_VERSION)
 SUBMODULE_NAME ?= NONE
 SUBMODULE_URL ?= NONE
