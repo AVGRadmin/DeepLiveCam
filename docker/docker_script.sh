@@ -1,5 +1,6 @@
 #!/bin/bash
-
+# This script contains all commands that will be executed from within the docker container. 
+# Here you can add any commands that might need to be added into the docker image before actually having to build your new image just to test one thing.
 ## Settings
 # Target extentions
 target_ext="jpg" # [jpg, png, mp4 ...]
