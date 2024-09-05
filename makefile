@@ -12,11 +12,9 @@ IMAGE ?= deep-swap:latest-cuda-$(CUDA_VERSION)
 SUBMODULE_NAME ?= NONE
 SUBMODULE_URL ?= NONE
 # Targets
-.PHONY: clean clean-all all setup_models run reset-models submodule-update
+.PHONY: clean clean-all all setup_models run submodule-update
 
 all: clean setup_models submodule-update run
-
-reset-models: clean setup_models
 	
 run: 
 	docker compose run Deep-Live-Cam
