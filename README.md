@@ -1,9 +1,12 @@
 # Repository Overview
 This repository is designed as an overhead solution to run various forks of [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam), one at a time, using [Docker](https://www.docker.com/products/docker-hub/). It contains all the necessary configurations and scripts to streamline the setup, build, and execution processes for different forks of the [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam). 
+## NB!
+I am mainly using Cuda version 12.2. This is mainly because i have other projects that depends on this version, and its easier for me to rely on that. I will add a dockerfile for cuda 11.8 at a later point. I have an existing [Docker image](https://hub.docker.com/layers/avgradmin/deep-swap/v0.0.6-cuda11.8/images/sha256-322d6fb27b849d691aeb9a962abefb0f597c4463e307a4ab7a5f992d14c482d3?context=repo)
+on the hub, but this is from an older deprecated development version and not compatiple with this repo as it is. Only image fully supported is [v0.1.2](https://hub.docker.com/layers/avgradmin/deep-swap/v0.1.2-cuda-12.2/images/sha256-17d70af9e9b3d18a3277b2e079248d1f033354ed6c773e89783863406a6533d8?context=repo) so far.
+Note that the original repo is made for cuda 11.8!
 ## Docker
 ### Dockerfile: 
-A Dockerfile optimized for building Docker images with CUDA version 12.2 support. This is mainly because i have other projects that depends on cuda 12.2. I will add a dockerfile for cuda 11.8 at a later point.
-Note that the original repo is made for cuda 11.8!
+A Dockerfile optimized for building Docker images with CUDA version 12.2 support. 
 ### Docker Compose File: 
 A Docker Compose configuration that allows you to manage and switch between different forks of the application seamlessly. Each fork is defined as a service, making it easy to add or switch forks by modifying the Docker Compose file.
 
