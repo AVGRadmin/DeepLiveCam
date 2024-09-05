@@ -23,9 +23,8 @@ The Makefile includes commands to clean up directories, download and set up mode
 
 ### Usage
 #### Getting existing submodules:
-- Run `make submodule-update` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
+- Run `make submodule-update` to download and set up the necessary repositories for the application. This command clones the repository and prepares them for use.
 #### Setting Up Models:
-
 - Run `make setup_models` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
 #### Running the Application:
 
