@@ -50,6 +50,7 @@ To add a new fork, you only need to:
 1. Add the volume in the Docker Compose file.
 2. Make sure to have all required models.
 3. Start app
+   
 This setup makes it easy to experiment with various forks of the application, allowing for quick changes and minimal configuration effort.
 
 ## Dependencies
