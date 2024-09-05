@@ -15,13 +15,7 @@ A Makefile that automates common tasks such as downloading and setting up models
 
 ## Repository Structure
 ### docker-compose.yml
-#### services: 
-- Defined in the Docker Compose file, each service corresponds to a different fork of the application. Users can switch between services by specifying the desired service name when running the Makefile.
-
-#### x-base: 
-- A shared configuration in the Docker Compose file that defines the base image, build context, volume mappings, GPU reservations, and runtime settings.
-
-#### volumes: 
+-  Users can switch between repositories by specifying the desired repo name when adding the volume.
 - The volumes section ensures that necessary scripts, models, and output directories are properly mapped to the Docker containers, allowing seamless data management across different services.
 
 ## Makefile: 
