@@ -26,7 +26,7 @@ clean:
 	rm -rf models tmp
 clean-all: clean
 	echo "WARNING: This will purge the output files generated in the output folder! Purge in 5s"
-	sleep 2
+	sleep 5
 	rm -rf output/output_files/*
 	rm -rf output/enhanced/*
 	
