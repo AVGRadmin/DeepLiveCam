@@ -28,15 +28,10 @@ The Makefile includes commands to clean up directories, download and set up mode
 - Run `make setup_models` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
 #### Running the Application:
 
-- To run the application using the default service (Deep-Live-Cam), simply use the command:
+- To run the application using the default repo ([Deep-Live-Cam-Docker](https://github.com/AVGRadmin?tab=repositories)), simply use the command:
 ```bash
 
 make run
-```
-- To run the application with a different service, specify the service name like so:
-```bash
-
-make run SERVICE=iRoopDeepFaceCam
 ```
 #### Building the Docker Image:
 
@@ -52,8 +47,9 @@ make build [IMAGE=<image_name>]
 - If you need to reset the models, you can use the `make reset-models` command, which will clean up and re-download the models.
 ## Adding New Forks
 To add a new fork, you only need to:
-1. Define the new service in the Docker Compose file.
-2. Specify the service name when running the Makefile commands, as shown in the examples above.
+1. Add the volume in the Docker Compose file.
+2. Make sure to have all required models.
+3. Start app
 This setup makes it easy to experiment with various forks of the application, allowing for quick changes and minimal configuration effort.
 
 ## Dependencies
