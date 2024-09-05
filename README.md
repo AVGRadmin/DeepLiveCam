@@ -44,7 +44,7 @@ make build [IMAGE=<image_name>]
 - Use `make clean` to clean up the models and temporary files.
 - Use `make clean-all` to purge all output files generated during the application run.
 #### Resetting Models:
-- If you need to reset the models, you can use the `make reset-models` command, which will clean up and re-download the models.
+- If you need to reset the models, you can use the `make setup_models` command, which will clean up and re-download the models.
 ## Adding New Forks
 To add a new fork, you only need to:
 1. Add the volume in the Docker Compose file.
