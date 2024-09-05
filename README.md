@@ -1,9 +1,12 @@
 # Repository Overview
 This repository is designed as an overhead solution to run various forks of [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam), one at a time, using [Docker](https://www.docker.com/products/docker-hub/). It contains all the necessary configurations and scripts to streamline the setup, build, and execution processes for different forks of the [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam). 
+## NB!
+I am mainly using Cuda version 12.2. This is mainly because i have other projects that depends on this version, and its easier for me to rely on that. I will add a dockerfile for cuda 11.8 at a later point. I have an existing [Docker image](https://hub.docker.com/layers/avgradmin/deep-swap/v0.0.6-cuda11.8/images/sha256-322d6fb27b849d691aeb9a962abefb0f597c4463e307a4ab7a5f992d14c482d3?context=repo)
+on the hub, but this is from an older deprecated development version and not compatiple with this repo as it is. Only image fully supported is [v0.1.2](https://hub.docker.com/layers/avgradmin/deep-swap/v0.1.2-cuda-12.2/images/sha256-17d70af9e9b3d18a3277b2e079248d1f033354ed6c773e89783863406a6533d8?context=repo) so far.
+Note that the original repo is made for cuda 11.8!
 ## Docker
 ### Dockerfile: 
-A Dockerfile optimized for building Docker images with CUDA version 12.2 support. This ensures compatibility with the GPU resources required by the application.
-
+A Dockerfile optimized for building Docker images with CUDA version 12.2 support. 
 ### Docker Compose File: 
 A Docker Compose configuration that allows you to manage and switch between different forks of the application seamlessly. Each fork is defined as a service, making it easy to add or switch forks by modifying the Docker Compose file.
 
@@ -12,39 +15,29 @@ A Makefile that automates common tasks such as downloading and setting up models
 
 ## Repository Structure
 ### docker-compose.yml
-#### services: 
-- Defined in the Docker Compose file, each service corresponds to a different fork of the application. Users can switch between services by specifying the desired service name when running the Makefile.
-
-#### x-base: 
-- A shared configuration in the Docker Compose file that defines the base image, build context, volume mappings, GPU reservations, and runtime settings.
-
-#### volumes: 
+-  Users can switch between repositories by specifying the desired repo name when adding the volume.
 - The volumes section ensures that necessary scripts, models, and output directories are properly mapped to the Docker containers, allowing seamless data management across different services.
 
 ## Makefile: 
 The Makefile includes commands to clean up directories, download and set up models, build the Docker image, and run the application using the specified service. Users can specify the service and image directly when executing commands, adding flexibility to the setup.
 
 ### Usage
+#### Getting existing submodules:
+- Run `make submodule-update` to download and set up the necessary repositories for the application. This command clones the repository and prepares them for use.
 #### Setting Up Models:
-
 - Run `make setup_models` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
 #### Running the Application:
 
-- To run the application using the default service (Deep-Live-Cam), simply use the command:
+- To run the application using the default repo ([Deep-Live-Cam-Docker](https://github.com/AVGRadmin?tab=repositories)), simply use the command:
 ```bash
-Copy code
+
 make run
-```
-- To run the application with a different service, specify the service name like so:
-```bash
-Copy code
-make run SERVICE=iRoopDeepFaceCam
 ```
 #### Building the Docker Image:
 
 - To build the Docker image with the specified CUDA version, use the make build command. You can also specify a different image name if needed:
 ```bash
-Copy code
+
 make build [IMAGE=<image_name>]
 ```
 #### Cleaning Up:
@@ -54,8 +47,10 @@ make build [IMAGE=<image_name>]
 - If you need to reset the models, you can use the `make reset-models` command, which will clean up and re-download the models.
 ## Adding New Forks
 To add a new fork, you only need to:
-1. Define the new service in the Docker Compose file.
-2. Specify the service name when running the Makefile commands, as shown in the examples above.
+1. Add the volume in the Docker Compose file.
+2. Make sure to have all required models.
+3. Start app
+   
 This setup makes it easy to experiment with various forks of the application, allowing for quick changes and minimal configuration effort.
 
 ## Dependencies

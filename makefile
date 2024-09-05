@@ -7,7 +7,7 @@ MODEL_DIR := models
 INSIGHTFACE_DIR := $(MODEL_DIR)/.insightface/models/buffalo_l
 MODEL_URL := https://huggingface.co/AVGRadmin/model-pool
 # Args
-SERVICE ?= Deep-Live-Cam
+SERVICE ?= Deep-Live-Cam-Docker
 IMAGE ?= deep-swap:latest-cuda-$(CUDA_VERSION)
 SUBMODULE_NAME ?= NONE
 SUBMODULE_URL ?= NONE
@@ -21,10 +21,10 @@ run:
 
 clean: 
 	sudo chown -R $(USER) .
-	rm -rf models model-pool
+	rm -rf models tmp
 clean-all: clean
 	echo "WARNING: This will purge the output files generated in the output folder! Purge in 5s"
-	sleep 2
+	sleep 5
 	rm -rf output/output_files/*
 	rm -rf output/enhanced/*
 	
@@ -32,7 +32,7 @@ setup_models: clean
 	git clone $(MODEL_URL) tmp
 	rm -rf models
 	mv tmp/models models
-	rm -rf model-pool
+	rm -rf tmp
 
 submodule-update:
 	git submodule update --init --recursive
