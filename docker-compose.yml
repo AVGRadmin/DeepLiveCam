@@ -2,10 +2,13 @@ version: '3.8'
 
 services:
   Deep-Live-Cam:
+    container_name: Deep-Live-Cam
     image: docker.io/avgradmin/deep-swap:v0.1.2-cuda-12.2
     build:
       context: .
       dockerfile: docker/Dockerfile.cuda12-2  
+    environment:
+      - DISPLAY=$DISPLAY
     volumes:
       - ./Deep-Live-Cam-Docker:/app
       - ./docker/docker_script.sh:/app/docker_script.sh
@@ -14,6 +17,9 @@ services:
       - ./models/gfpgan:/app/gfpgan
       - ./models:/app/models
       - ./output:/app/output
+
+      # Display
+      - /tmp/.X11-unix:/tmp/.X11-unix 
     deploy:
       resources:
         reservations:
