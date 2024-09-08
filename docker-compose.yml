@@ -8,6 +8,19 @@ services:
       context: .
       dockerfile: docker/Dockerfile.cuda12-2  
     environment:
+      ## Processor
+      - MANY_FACES=false  # true/false
+      - frame_processor=face_swapper
+      ## Performance
+      - max_mem=8
+      - threads=4
+      - video_encoder=libx265
+      - USE_GPU=cuda  # Change to cuda or whatever you need to use. 'false' disables.
+      ## Video
+      - USE_VIDEO_ARGS=false  # true/false
+      - video_quality=0
+
+      # Display
       - DISPLAY=$DISPLAY
     volumes:
       - ./Deep-Live-Cam-Docker:/app
