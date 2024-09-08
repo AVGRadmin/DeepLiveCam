@@ -23,7 +23,8 @@ The Makefile includes commands to clean up directories, download and set up mode
 
 ### Usage
 #### Getting existing submodules:
-- Run `make submodule-update` to download and set up the necessary repositories for the application. This command clones the repository and prepares them for use.
+- Run `make submodule-update` to download and set up the DEFAULT repositories for the application. This command clones the repository and prepares them for use.
+- Do **not** use if you intend to use other forks.
 #### Setting Up Models:
 - Run `make setup_models` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
 #### Running the Application:
@@ -47,9 +48,10 @@ make build [IMAGE=<image_name>]
 - If you need to reset the models, you can use the `make setup_models` command, which will clean up and re-download the models.
 ## Adding New Forks
 To add a new fork, you only need to:
-1. Add the volume in the Docker Compose file.
-2. Make sure to have all required models.
-3. Start app
+1. Clone the desired fork inside the repo folder.
+2. Add the volume in the Docker Compose file.
+3. Make sure to have all required models.
+4. Start app
    
 This setup makes it easy to experiment with various forks of the application, allowing for quick changes and minimal configuration effort.
 
