@@ -13,6 +13,10 @@ A Docker Compose configuration that allows you to manage and switch between diff
 ### Makefile
 A Makefile that automates common tasks such as downloading and setting up models, building Docker images, and running the application. The Makefile is designed to be flexible, allowing users to specify which service (fork) and Docker image to use without modifying the Makefile itself.
 
+### Bash script (docker_script.sh)
+A bash script that contain all settings used to start the python scripts. Change the global variables for settings such as gpu, video encoder, UI/CLI and so on. 
+
+
 ## Repository Structure
 ### docker-compose.yml
 -  Users can switch between repositories by specifying the desired repo name when adding the volume.
@@ -33,6 +37,37 @@ The Makefile includes commands to clean up directories, download and set up mode
 
 make run
 ```
+#### Settings
+<details>
+  <summary>docker_script.sh</summary>
+
+#####   Outputs
+These settings should be left as they are to ensure compatibility with future docker images. Possibly for changes in my own fork if you intend to use that.
+```bash
+### Output paths
+root_output="output"
+source_dir="${root_output}/source_files" 
+target_dir="${root_output}/target_files"
+output_dir="${root_output}/output_files"
+enhanced_folder="${root_output}/enhanced_files"
+```
+#####   App settings
+These are settings you probably wanna play around with and create the best ones for your usage. 
+```bash
+### Processor
+MANY_FACES=false # true/false
+frame_processor=face_swapper
+## Performance
+max_mem=6
+threads=4
+video_encoder=libx265
+USE_GPU=false # Change to cuda or whatever you need to use. 'false' disables.
+## Video
+USE_VIDEO_ARGS=false # true/false
+video_quality=0
+```
+</details>
+
 #### Building the Docker Image:
 
 - To build the Docker image with the specified CUDA version, use the make build command. You can also specify a different image name if needed:
@@ -57,14 +92,15 @@ This setup makes it easy to experiment with various forks of the application, al
 
 To use this repository effectively, ensure that your environment meets the following dependencies:
 
-- Docker: You need to have Docker installed on your system. Docker is used to containerize the application and its dependencies. You can install Docker from the official Docker website.
+- Docker: You need to have Docker installed on your system. Docker is used to containerize the application and its dependencies. You can install Docker from the official Docker [website](https://docs.docker.com/engine/install/).
 
-- Docker Compose: Docker Compose is required to manage multi-container Docker applications. It allows you to define and run multi-container Docker applications. Ensure Docker Compose is installed alongside Docker.
+- Docker Compose: Docker Compose is required to manage multi-container Docker applications. It allows you to define and run multi-container Docker applications. Ensure Docker Compose is installed alongside Docker. See [this](https://docs.docker.com/compose/install/).
 
 - NVIDIA Container Toolkit: If you plan to leverage GPU resources, you need to install the NVIDIA Container Toolkit. This toolkit allows Docker to access the GPU on your system. Installation instructions are available on NVIDIA's official website.
     - Note: It is quite possible to use other cuda versions by editing the Dockerfile, but you will probably run into other dependencies that you'll have to fix.
+    - Windows users see [this](https://docs.docker.com/desktop/gpu/)
 
-- Git: Git is required to clone the model repository and manage version control for this project. Ensure Git is installed on your system.
+- Git: [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git) is required to clone the model repository and manage version control for this project. Ensure Git is installed on your system.
 
 - A CUDA-compatible GPU: Since the application is designed to utilize CUDA, you need a GPU that supports CUDA, along with the appropriate drivers installed on your system.
 
