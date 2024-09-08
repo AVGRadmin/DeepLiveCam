@@ -42,7 +42,7 @@ process_folders() {
         cmd+=" --many-faces"
     fi
     if [[ "${USE_GPU}" != false ]]; then
-        cmd+="--execution-provider ${USE_GPU}"
+        cmd+=" --execution-provider ${USE_GPU}"
     fi
     eval $cmd
 }
@@ -61,7 +61,7 @@ ui() {
         cmd+=" --many-faces"
     fi
     if [[ "${USE_GPU}" != false ]]; then
-        cmd+="--execution-provider ${USE_GPU}"
+        cmd+=" --execution-provider ${USE_GPU}"
     fi
     eval $cmd
 }
