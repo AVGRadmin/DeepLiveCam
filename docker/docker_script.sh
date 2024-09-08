@@ -1,90 +1,76 @@
 #!/bin/bash
-# This script contains all commands that will be executed from within the docker container. 
-# Here you can add any commands that might need to be added into the docker image before actually having to build your new image just to test one thing.
-## Settings
-# Target extentions
-target_ext="jpg" # [jpg, png, mp4 ...]
-source_ext="jpg" # [jpg, png ...]
 
-# Output paths
+# Settings
+
+## General
+### Output paths
 root_output="output"
 source_dir="${root_output}/source_files" 
 target_dir="${root_output}/target_files"
 output_dir="${root_output}/output_files"
 enhanced_folder="${root_output}/enhanced_files"
 
-## Startup
-# Ensure output directory exists
+### Processor
+MANY_FACES=false # true/false
+frame_processor=face_swapper
+
+## Performance
+max_mem=6
+threads=4
+video_encoder=libx265
+USE_GPU=false # Change to cuda or whatever you need to use. 'false' disables.
+
+## Video
+USE_VIDEO_ARGS=false # true/false
+video_quality=0
+
+# Use when processing in no-UI mode
+process_folders() {
+    local cmd="python3 run.py \
+        -sf \"${source_dir}\" \
+        -tf \"${target_dir}\" \
+        -o \"${output_dir}\" \
+        --frame-processor ${frame_processor} \
+        --execution-threads ${threads} \
+        --max-memory ${max_mem}"
+
+    if [[ "${USE_VIDEO_ARGS}" == true ]]; then
+        cmd+=" --video-encoder ${video_encoder} --video-quality ${video_quality} --keep-fps --keep-audio"
+    fi
+
+    if [[ "${MANY_FACES}" == true ]]; then
+        cmd+=" --many-faces"
+    fi
+    if [[ "${USE_GPU}" != false ]]; then
+        cmd+="--execution-provider ${USE_GPU}"
+    fi
+    eval $cmd
+}
+
+# Use when processing in no-UI mode
+ui() {
+    local cmd="python3 run.py \
+        --execution-threads ${threads} \
+        --max-memory ${max_mem}"
+
+    if [[ "${USE_VIDEO_ARGS}" == true ]]; then
+        cmd+=" --video-encoder ${video_encoder} --video-quality ${video_quality}"
+    fi
+
+    if [[ "${MANY_FACES}" == true ]]; then
+        cmd+=" --many-faces"
+    fi
+    if [[ "${USE_GPU}" != false ]]; then
+        cmd+="--execution-provider ${USE_GPU}"
+    fi
+    eval $cmd
+}
+
+# Startup
+
+## Create workdir folders
 mkdir -p "${output_dir}"
 mkdir -p "${enhanced_folder}"
 
-generate_unique_filename() {
-    local base_name=$1
-    local output_dir=$2
-    local output_file="${output_dir}/${base_name}"
-    local counter=1
-
-    while [ -e "${output_file}" ]; do
-        output_file="${output_dir}/${base_name%.*}_$counter.${base_name##*.}"
-        counter=$((counter + 1))
-    done
-
-    echo "${output_file}"
-}
-
-process_files() {
-    for target_file in "${target_dir}"/*.${target_ext}; do
-        if [ ! -e "${target_file}" ]; then
-            echo "No target files with extension ${target_ext} found in ${target_dir}"
-            continue
-        fi
-
-        
-        base_name=$(basename "${target_file}")
-        for input_file in "${source_dir}"/*.${source_ext}; do
-            if [ ! -e "${source_dir}" ]; then
-                echo "No input files found in ${source_dir}"
-                continue
-            fi
-
-            input_base_name=$(basename "${input_file}")
-            name=$(echo "$input_base_name" | sed "s/.$source_ext/_/g")${base_name}
-            # Generate a unique output file name
-            output_file=$(generate_unique_filename "${name}" "${output_dir}")
-            
-            # Run Docker Compose with overridden command
-                python3 run.py \
-                -s "${input_file}" \
-                -t "${target_file}" \
-                -o "${output_file}" \
-                --execution-provider cuda \
-                --frame-processor face_swapper \
-                --many-faces \
-                --execution-threads 4 \
-                --video-encoder libx265 \
-                --video-quality 0 \
-                --keep-fps \
-                --keep-audio \
-                --max-memory 8
-
-            # Comment out to skip face enhancing
-            echo "Saved to ${output_file}"
-                    python3 run.py \
-                    -s "${input_file}" \
-                    -t "${output_file}" \
-                    -o $(generate_unique_filename "${name}" "${enhanced_folder}") \
-                    --execution-provider cuda \
-                    --frame-processor "face_enhancer" \
-                    --execution-threads 4 \
-                    --video-encoder libx265 \
-                    --video-quality 0 \
-                    --keep-fps \
-                    --keep-frames \
-                    --keep-audio \
-                    --max-memory 8
-        done
-    done
-}
-
-
-process_files 
+## Run app
+ui
