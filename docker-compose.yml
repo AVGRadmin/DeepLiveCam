@@ -23,8 +23,10 @@ services:
       # Display
       - DISPLAY=$DISPLAY
     volumes:
+    # Change according to your setup
       - ./Deep-Live-Cam-Docker:/app
-      - ./docker/docker_script.sh:/app/docker_script.sh
+      # Do not change below volumes
+      - ./output/docker.sh:/app/docker_script.sh
       - ./models/.insightface:/root/.insightface
       - ./models/.insightface:/app/.insightface
       - ./models/gfpgan:/app/gfpgan
