@@ -16,40 +16,53 @@ A Dockerfile optimized for building Docker images with CUDA version 12.2 support
 A Docker Compose configuration that allows you to manage and switch between different forks of the application seamlessly. Each fork is defined as a service, making it easy to add or switch forks by modifying the Docker Compose file.
 
 ### Makefile
-A Makefile that automates common tasks such as downloading and setting up models, building Docker images, and running the application. The Makefile is designed to be flexible, allowing users to specify which service (fork) and Docker image to use without modifying the Makefile itself.
+The Makefile now handles the environment variables previously managed by the bash script. It automates common tasks such as downloading and setting up models, building Docker images, and running the application. You can specify the service (fork) and Docker image to use without modifying the Makefile itself.
 
-### Bash script (docker_script.sh)
-A bash script that contain all settings used to start the python scripts. Change the global variables for settings such as gpu, video encoder, UI/CLI and so on. 
-
+### Environment Variables
+The environment variables have been moved from the bash script to the Docker Compose and Makefile, allowing for easier configuration and customization based on your needs.
+- `MANY_FACES`: Set to true or false to enable or disable processing of multiple faces.
+- `frame_processor`: Set the type of frame processing (e.g., `face_swapper`).
+- `max_mem`: Maximum memory allocation for processing.
+- `threads`: Number of threads for processing.
+- `video_encoder`: Video encoder to use (e.g., `libx265`).
+- `USE_GPU`: Set to cuda to enable GPU processing or `false` to disable.
+- `USE_VIDEO_ARGS`: Set to `true` or `false` to include additional video processing arguments.
+- `video_quality`: Set the video quality level.
 
 ## Repository Structure
 ### docker-compose.yml
--  Users can switch between repositories by specifying the desired repo name when adding the volume.
+- Users can switch between repositories by specifying the desired repo name when adding the volume.
 - The volumes section ensures that necessary scripts, models, and output directories are properly mapped to the Docker containers, allowing seamless data management across different services.
-
 ## Makefile: 
 The Makefile includes commands to clean up directories, download and set up models, build the Docker image, and run the application using the specified service. Users can specify the service and image directly when executing commands, adding flexibility to the setup.
 
 ### Usage
-
-
+<details>
+  <summary>video example</summary>
 https://github.com/user-attachments/assets/f495c7c6-fd08-405f-b306-2967f67f1e73
-
-
-
+</details>
 
 #### Getting existing submodules:
 - Run `make submodule-update` to download and set up the DEFAULT repositories for the application. This command clones the repository and prepares them for use.
 - Do **not** use if you intend to use other forks.
 #### Setting Up Models:
-- Run `make setup_models` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
+- Run `make setup-models` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
 #### Running the Application:
 
 - To run the application using the default repo ([Deep-Live-Cam-Docker](https://github.com/AVGRadmin?tab=repositories)), simply use the command:
 ```bash
-xhos + # Only needed once
-make run
+xhost + # Only needed once
 ```
+- ##### UI Mode:
+```bash
+make ui
+```
+- ##### CLI Mode:
+```bash
+make ui
+```
+- ##### Debug Mode:
+`make ui-debug` or `make cli-debug`
 #### Settings
 <details>
   <summary>docker_script.sh</summary>
