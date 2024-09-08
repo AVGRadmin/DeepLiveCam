@@ -47,7 +47,7 @@ https://github.com/user-attachments/assets/f495c7c6-fd08-405f-b306-2967f67f1e73
 
 - To run the application using the default repo ([Deep-Live-Cam-Docker](https://github.com/AVGRadmin?tab=repositories)), simply use the command:
 ```bash
-
+xhos + # Only needed once
 make run
 ```
 #### Settings
