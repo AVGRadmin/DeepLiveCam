@@ -1,5 +1,10 @@
 # Repository Overview
 This repository is designed as an overhead solution to run various forks of [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam), one at a time, using [Docker](https://www.docker.com/products/docker-hub/). It contains all the necessary configurations and scripts to streamline the setup, build, and execution processes for different forks of the [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam). 
+
+
+
+
+
 ## NB!
 I am mainly using Cuda version 12.2. This is mainly because i have other projects that depends on this version, and its easier for me to rely on that. I will add a dockerfile for cuda 11.8 at a later point. I have an existing [Docker image](https://hub.docker.com/layers/avgradmin/deep-swap/v0.0.6-cuda11.8/images/sha256-322d6fb27b849d691aeb9a962abefb0f597c4463e307a4ab7a5f992d14c482d3?context=repo)
 on the hub, but this is from an older deprecated development version and not compatiple with this repo as it is. Only image fully supported is [v0.1.2](https://hub.docker.com/layers/avgradmin/deep-swap/v0.1.2-cuda-12.2/images/sha256-17d70af9e9b3d18a3277b2e079248d1f033354ed6c773e89783863406a6533d8?context=repo) so far.
@@ -26,6 +31,13 @@ A bash script that contain all settings used to start the python scripts. Change
 The Makefile includes commands to clean up directories, download and set up models, build the Docker image, and run the application using the specified service. Users can specify the service and image directly when executing commands, adding flexibility to the setup.
 
 ### Usage
+
+
+https://github.com/user-attachments/assets/f495c7c6-fd08-405f-b306-2967f67f1e73
+
+
+
+
 #### Getting existing submodules:
 - Run `make submodule-update` to download and set up the DEFAULT repositories for the application. This command clones the repository and prepares them for use.
 - Do **not** use if you intend to use other forks.
