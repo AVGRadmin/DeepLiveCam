@@ -47,7 +47,7 @@ process_folders() {
     eval $cmd
 }
 
-# Use when processing in no-UI mode
+# Use when processing in UI mode
 ui() {
     local cmd="python3 run.py \
         --execution-threads ${threads} \
@@ -74,3 +74,4 @@ mkdir -p "${enhanced_folder}"
 
 ## Run app
 ui
+# process_folders
