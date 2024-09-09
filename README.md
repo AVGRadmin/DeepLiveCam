@@ -1,7 +1,8 @@
 # Repository Overview
 This repository is designed as an overhead solution to run various forks of [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam), one at a time, using [Docker](https://www.docker.com/products/docker-hub/). It contains all the necessary configurations and scripts to streamline the setup, build, and execution processes for different forks of the [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam). 
 
-
+Special thanks to the original creator and maintainers of [Deep-Live-Cam](https://github.com/hacksider/Deep-Live-Cam) for their incredible work and dedication to developing and maintaining this powerful tool. Your contributions have made this project possible.
+And special thanks to [s0md3v](https://github.com/s0md3v) for creating [Roop](https://github.com/s0md3v/roop), which laid the foundation for these projects!
 
 
 
