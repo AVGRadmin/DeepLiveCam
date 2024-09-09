@@ -1,12 +1,3 @@
 [submodule "Deep-Live-Cam-Docker"]
 	path = Deep-Live-Cam-Docker
 	url = https://github.com/AVGRadmin/Deep-Live-Cam-Docker.git
-[submodule "Deep-Live-Cam"]
-	path = Deep-Live-Cam
-	url = https://github.com/hacksider/Deep-Live-Cam
-[submodule "iRoopDeepFaceCam"]
-	path = iRoopDeepFaceCam
-	url = https://github.com/iVideoGameBoss/iRoopDeepFaceCam
-[submodule "Deep-Live-Cam-Multi-Language"]
-	path = Deep-Live-Cam-Multi-Language
-	url = https://github.com/AVGRadmin/Deep-Live-Cam-Multi-Language
