@@ -1,3 +1,6 @@
 [submodule "Deep-Live-Cam-Multi-Language"]
 	path = Deep-Live-Cam-Multi-Language
 	url = https://github.com/AVGRadmin/Deep-Live-Cam-Multi-Language.git
+[submodule "Deep-Live-Cam"]
+	path = Deep-Live-Cam
+	url = https://github.com/hacksider/Deep-Live-Cam
