@@ -39,7 +39,9 @@ The Makefile includes commands to clean up directories, download and set up mode
 ### Usage
 <details>
   <summary>video example</summary>
-https://github.com/user-attachments/assets/f495c7c6-fd08-405f-b306-2967f67f1e73
+  
+https://github.com/user-attachments/assets/6975f688-08a1-4c33-9727-896e6d2c3c08
+
 </details>
 
 #### Getting existing submodules:
