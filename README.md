@@ -49,7 +49,7 @@ https://github.com/user-attachments/assets/f495c7c6-fd08-405f-b306-2967f67f1e73
 - Run `make setup-models` to download and set up the necessary models for the application. This command clones the model repository and prepares the models for use.
 #### Running the Application:
 
-- To run the application using the default repo ([Deep-Live-Cam-Docker](https://github.com/AVGRadmin?tab=repositories)), simply use the command:
+- To run the application using the default repo ([Deep-Live-Cam-Multi-Language](https://github.com/AVGRadmin/Deep-Live-Cam-Multi-Language)), simply use the command:
 ```bash
 xhost + # Only needed once
 ```
