@@ -14,7 +14,7 @@ SUBMODULE_URL ?= NONE
 # Targets
 .PHONY: clean clean-all all setup-models run get-submodules push-latest-submodule-to-git update-git
 
-all: clean setupsmodels get-submodules run
+all: clean setup-models get-submodules run
 
 update-git: push-latest-submodule-to-git
 
