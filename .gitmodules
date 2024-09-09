@@ -7,3 +7,6 @@
 [submodule "iRoopDeepFaceCam"]
 	path = iRoopDeepFaceCam
 	url = https://github.com/iVideoGameBoss/iRoopDeepFaceCam
+[submodule "Deep-Live-Cam-Multi-Language"]
+	path = Deep-Live-Cam-Multi-Language
+	url = https://github.com/AVGRadmin/Deep-Live-Cam-Multi-Language
