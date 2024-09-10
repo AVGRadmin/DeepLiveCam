@@ -14,7 +14,7 @@ Note that the original repo is made for cuda 11.8!
 ### Dockerfile: 
 A Dockerfile optimized for building Docker images with CUDA version 12.2 support. 
 ### Docker Compose File: 
-A Docker Compose configuration that allows you to manage and switch between different forks of the application seamlessly. Each fork is defined as a service, making it easy to add or switch forks by modifying the Docker Compose file.
+A Docker Compose configuration that allows you to manage and switch between different forks of the application seamlessly. Each fork is defined by adding the folder as a volume, making it easy to add or switch forks by modifying the Docker Compose file.
 
 ### Makefile
 The Makefile now handles the environment variables previously managed by the bash script. It automates common tasks such as downloading and setting up models, building Docker images, and running the application. You can specify the service (fork) and Docker image to use without modifying the Makefile itself.
