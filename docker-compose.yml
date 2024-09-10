@@ -35,6 +35,8 @@ services:
 
       # Display
       - /tmp/.X11-unix:/tmp/.X11-unix 
+      - /dev/video0:/dev/video0
+      - /dev/video1:/dev/video1
     deploy:
       resources:
         reservations:
@@ -43,5 +45,6 @@ services:
               count: 1
               capabilities: [gpu]
     tty: true
+    privileged: true # Need for webcam
     runtime: nvidia
     command: [ "/bin/bash", "/app/docker_script.sh" ]
