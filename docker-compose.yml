@@ -24,7 +24,7 @@ services:
       - DISPLAY=$DISPLAY
     volumes:
     # Change according to your setup
-      - ./Deep-Live-Cam-Multi-Language:/app
+      - ./iRoopDeepFaceCam-avgr:/app
       # Do not change below volumes
       - ./output/docker.sh:/app/docker_script.sh
       - ./models/.insightface:/root/.insightface
