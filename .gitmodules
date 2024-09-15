@@ -4,3 +4,6 @@
 [submodule "Deep-Live-Cam"]
 	path = Deep-Live-Cam
 	url = https://github.com/hacksider/Deep-Live-Cam
+[submodule "iRoopDeepFaceCam-avgr"]
+	path = iRoopDeepFaceCam-avgr
+	url = https://github.com/AVGR-Labs/iRoopDeepFaceCam-avgr
