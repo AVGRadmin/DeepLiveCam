@@ -8,6 +8,10 @@ services:
       context: .
       dockerfile: docker/Dockerfile.cuda12-2  
     environment:
+      ## Output / Inputs
+      - DEFAULT_SOURCE=/app/output/source_files
+      - DEFAULT_TARGET=/app/output/target_files
+      - DEFAULT_OUTPUT=/app/output/output_files/test
       ## Processor
       - MANY_FACES=false  # true/false
       - frame_processor=face_swapper
