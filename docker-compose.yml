@@ -17,14 +17,15 @@ services:
       - frame_processor=face_swapper
       ## Performance
       - max_mem=8
-      - threads=4
+      - threads=2
       - video_encoder=libx265
       - USE_GPU=cuda  # Change to cuda or whatever you need to use. 'false' disables.
-      ## Video
-      - USE_VIDEO_ARGS=false  # true/false
+
+      ## Video (Only needed cor CLI)
+      - USE_VIDEO_ARGS=true  # true/false
       - video_quality=0
 
-      # Display
+      # Display # Linux use 'xhost +' in cli to enable window
       - DISPLAY=$DISPLAY
     volumes:
     # Change according to your setup
@@ -35,6 +36,7 @@ services:
       - ./models/.insightface:/app/.insightface
       - ./models/gfpgan:/app/gfpgan
       - ./models:/app/models
+      - ./models:/app/modules/models
       - ./output:/app/output
 
       # Display
